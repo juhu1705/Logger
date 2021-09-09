@@ -9,7 +9,7 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/juhu1705/logger")
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUBUSERNAME") ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
             }
         }
@@ -32,7 +32,7 @@ repositories {
     maven {
         url = uri("https://maven.pkg.github.com/juhu1705/eventmanager")
         credentials {
-            username = project.findProperty("gpr.user") ?: System.getenv("GITHUBUSERNAME")
+            username = project.findProperty("gpr.user") ?: System.getenv("GITHUBUSERNAME") ?: System.getenv("USERNAME")
             password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
         }
     }
