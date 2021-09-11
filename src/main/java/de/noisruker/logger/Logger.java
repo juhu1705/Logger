@@ -19,6 +19,10 @@
 
 package de.noisruker.logger;
 
+import de.noisruker.logger.handles.FileLoggingHandler;
+import de.noisruker.logger.handles.LoggingFormatter;
+import de.noisruker.logger.handles.LoggingHandler;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
