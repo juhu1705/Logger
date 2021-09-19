@@ -38,10 +38,16 @@
 
 package de.noisruker.logger.handles;
 
+import de.noisruker.logger.PrintFormat;
+import de.noisruker.logger.Settings;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
+
+import static java.time.LocalDateTime.now;
+import static de.noisruker.logger.PrintFormat.*;
 
 /**
  * Formatter für den {@link LoggingHandler}
@@ -56,8 +62,28 @@ public class LoggingFormatter extends Formatter {
     public String format(LogRecord record) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("[").append(LocalDateTime.now().format(dateTimeFormatter)).append("] [").append(record.getLevel())
-                .append(" | ").append(record.getSourceClassName()).append("] ").append(record.getMessage()).append("\n");
+        String[] className = record.getSourceClassName().split("\\.");
+
+        PrintFormat format = Settings.PRINT_FORMAT;
+
+        if (format.getLevel() >= TIME.getLevel())
+            sb.append("[").append(now().format(dateTimeFormatter)).append("] ");
+        if ((format.getLevel() >= LEVEL.getLevel() && (format.getLevel() < CLASS_SHORT.getLevel() || format.getLevel() >= CLASS.getLevel())))
+            sb.append("[").append(record.getLevel()).append("] ");
+        if (format.getLevel() >= CLASS.getLevel())
+            sb.append("[").append(Thread.currentThread().getName()).append(":").append(className[className.length - 1])
+                    .append(":").append(record.getSourceMethodName()).append("] ");
+        if (format.getLevel() >= LOGGER.getLevel()) {
+            if (record.getLoggerName() != null)
+                sb.append("[").append(record.getLoggerName()).append("] ");
+        }
+        if(format.getLevel() < CLASS.getLevel() && format.getLevel() >= CLASS_SHORT.getLevel()) {
+            sb.append(" [").append(record.getLevel()).append(" | ").append(className[className.length - 1]).append("] ");
+        }
+
+        if (format.getLevel() >= ONLY_MESSAGE.getLevel())
+            sb.append(record.getMessage());
+        sb.append("\n");
 
         Throwable thrown = record.getThrown();
         if (thrown != null) {

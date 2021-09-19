@@ -39,6 +39,7 @@
 package de.noisruker.logger.handles;
 
 import de.noisruker.event.EventManager;
+import de.noisruker.logger.Settings;
 import de.noisruker.logger.events.LogReceivedErrorEvent;
 import de.noisruker.logger.events.LogReceivedMessageEvent;
 
@@ -56,6 +57,9 @@ public class LoggingHandler extends Handler {
     @Override
     public void publish(LogRecord record) {
         String output = this.getFormatter().format(record);
+
+        if (this.getLevel() != null && this.getLevel().intValue() > record.getLevel().intValue())
+            return;
 
         if (record.getLevel().intValue() >= Level.WARNING.intValue()) {
             System.err.print(output);

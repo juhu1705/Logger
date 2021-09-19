@@ -19,6 +19,8 @@
 
 package de.noisruker.logger;
 
+import java.util.logging.Level;
+
 /**
  * The settings for the Logger
  *
@@ -40,10 +42,13 @@ public class Settings {
      */
     public static String LOGGER_NAME;
 
+    public static PrintFormat PRINT_FORMAT;
+
     static {
         PROGRAMM_FOLDER = "/.NoisrukerLogger/";
         HOME_FOLDER = System.getProperty("user.home");
         LOGGER_NAME = "logging";
+        PRINT_FORMAT = PrintFormat.LOGGER;
     }
 
 }
