@@ -53,7 +53,7 @@ public class Logger {
         if (!Files.exists(FileSystems.getDefault().getPath(home), LinkOption.NOFOLLOW_LINKS))
             new File(home).mkdir();
         try {
-            Handler file = new FileLoggingHandler(Paths.get(home, Settings.LOGGER_NAME, ".log").toString());
+            Handler file = new FileLoggingHandler(Paths.get(home, Settings.LOGGER_NAME + ".log").toString());
             file.setFormatter(new LoggingFormatter());
             file.setLevel(Level.ALL);
             LOGGER.addHandler(file);
