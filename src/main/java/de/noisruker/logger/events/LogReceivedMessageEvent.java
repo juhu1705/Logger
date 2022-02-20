@@ -26,26 +26,43 @@ import java.util.logging.LogRecord;
 /**
  * A LogMessage send to the event Manager when the log received a message
  *
- * @author Fabius Mettner
  */
-public class LogReceivedMessageEvent extends Event {
+public class LogReceivedMessageEvent extends Event<Void> {
 
+    /**
+     * The record of this log message
+     */
     private final LogRecord record;
+    /**
+     * The formatted message ready for printing
+     */
     private final String formattedMessage;
 
+    /**
+     * Creates a new Log Event including the events name. This is for calls by children classes
+     * @param name The events name
+     * @param record The record from the log message
+     * @param formattedMessage The ready for print formatted log message
+     */
     protected LogReceivedMessageEvent(String name, LogRecord record, String formattedMessage) {
         super(name);
         this.record = record;
         this.formattedMessage = formattedMessage;
     }
 
+    /**
+     * Creates a new message log event with the given record and the formatted message
+     * @param record The record of the log message
+     * @param formattedMessage The ready for print formatted log message
+     */
     public LogReceivedMessageEvent(LogRecord record, String formattedMessage) {
-        this("LogEvent", record,formattedMessage);
+        this("message log event", record,formattedMessage);
     }
 
     /**
      * @return The unformatted log message
      */
+    @SuppressWarnings("unused")
     public String getRawMessage() {
         return this.record.getMessage();
     }
@@ -53,6 +70,7 @@ public class LogReceivedMessageEvent extends Event {
     /**
      * @return The message that was formatted by the LoggingFormatter
      */
+    @SuppressWarnings("unused")
     public String getConsoleMessage() {
         return this.formattedMessage;
     }
@@ -60,6 +78,7 @@ public class LogReceivedMessageEvent extends Event {
     /**
      * @return The log messages record, with all important information
      */
+    @SuppressWarnings("unused")
     public LogRecord getRecord() {
         return this.record;
     }

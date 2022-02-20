@@ -34,8 +34,6 @@ import java.util.logging.Level;
 
 /**
  * Here you can find the Logger
- *
- * @author Fabius Mettner
  */
 public class Logger {
 

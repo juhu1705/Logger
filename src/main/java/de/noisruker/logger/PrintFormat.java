@@ -20,22 +20,28 @@
 package de.noisruker.logger;
 
 /**
- * Das Print Format ist wichtig für die Logger Klasse und bestimmt die
- * angegebenen zusatzinformationen. Je kleiner der Wert, desto weniger
- * zusatzinformationen werden mitgegeben.
- * 
- * @author Juhu1705
- * @category Log
+ * The print format is important to calculate the loggers extra information.
+ * A higher value means more information to be written to the formatted logs message.
  */
 public enum PrintFormat {
 	ONLY_MESSAGE(0), TIME(1), LEVEL(2), CLASS_SHORT(3), LOGGER(4), CLASS(5), ALL(100);
 
-	private int level;
+	/**
+	 * The logging level for the print format. For higher numbers more explanations where added to the log
+	 */
+	private final int level;
 
+	/**
+	 * A new enum type print format with its level
+	 * @param level The level of the print format
+	 */
 	PrintFormat(int level) {
 		this.level = level;
 	}
 
+	/**
+	 * @return The level of the print format
+	 */
 	public int getLevel() {
 		return this.level;
 	}

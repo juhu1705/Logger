@@ -48,7 +48,7 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
 /**
- * Handler für Logging-API
+ * Handler for the Logging-API
  *
  * @author Niklas, Fabius
  */
@@ -64,11 +64,11 @@ public class LoggingHandler extends Handler {
         if (record.getLevel().intValue() >= Level.WARNING.intValue()) {
             System.err.print(output);
 
-            EventManager.getInstance().triggerEvent(new LogReceivedErrorEvent(record, output));
+            EventManager.getInstance().triggerEventAsync(new LogReceivedErrorEvent(record, output), v -> {});
         } else {
             System.out.print(output);
 
-            EventManager.getInstance().triggerEvent(new LogReceivedMessageEvent(record, output));
+            EventManager.getInstance().triggerEventAsync(new LogReceivedMessageEvent(record, output), v -> {});
         }
     }
 

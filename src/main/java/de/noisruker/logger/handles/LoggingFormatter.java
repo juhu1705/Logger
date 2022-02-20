@@ -50,12 +50,15 @@ import static java.time.LocalDateTime.now;
 import static de.noisruker.logger.PrintFormat.*;
 
 /**
- * Formatter für den {@link LoggingHandler}
+ * Formatter for the {@link LoggingHandler}
  *
  * @author Niklas
  */
 public class LoggingFormatter extends Formatter {
 
+    /**
+     * Formatting of datetime
+     */
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     @Override

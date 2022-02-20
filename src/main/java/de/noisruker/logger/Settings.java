@@ -19,13 +19,10 @@
 
 package de.noisruker.logger;
 
-import java.util.logging.Level;
-
 /**
  * The settings for the Logger
- *
- * @implNote These must be set before the Logger is called the first time, elsewhere changes take no effect
- * @author Fabius Mettner
+ * <p>
+ * HOME_FOLDER, PROGRAMM_FOLDER and LOGGER_NAME must be set before the Logger is called the first time, elsewhere changes take no effect
  */
 public class Settings {
 
@@ -42,6 +39,9 @@ public class Settings {
      */
     public static String LOGGER_NAME;
 
+    /**
+     * The format messages are print to the logger
+     */
     public static PrintFormat PRINT_FORMAT;
 
     static {

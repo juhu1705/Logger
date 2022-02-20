@@ -45,14 +45,22 @@ import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
 /**
- * Handler für Logging-API
+ * Handler for the Logging-API
  *
  * @author Niklas
  */
 public class FileLoggingHandler extends Handler {
 
+    /**
+     * The file printer to print to
+     */
     private final PrintWriter writer;
 
+    /**
+     * Creates a logging handler that writes to the given file
+     * @param file The file to write the log into
+     * @throws IOException If accessing the file failed
+     */
     public FileLoggingHandler(String file) throws IOException {
         this.writer = new PrintWriter(file, StandardCharsets.UTF_8);
     }

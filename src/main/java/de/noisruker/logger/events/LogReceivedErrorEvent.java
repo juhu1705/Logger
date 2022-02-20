@@ -23,23 +23,25 @@ import java.util.logging.LogRecord;
 
 /**
  * An error LogMessage. This is a log message fired when an error LogMessage is received by the log
- *
- * @author Fabius Mettner
  */
 public class LogReceivedErrorEvent extends LogReceivedMessageEvent {
 
-    private final Throwable thrown;
-
+    /**
+     * Creates a new error log event with its log record and the ready for print formatted message
+     *
+     * @param record The log messages record
+     * @param formattedMessage The ready for print formatted log message
+     */
     public LogReceivedErrorEvent(LogRecord record, String formattedMessage) {
-        super("ErrorLogEvent", record, formattedMessage);
-        this.thrown = record.getThrown();
+        super("error log event", record, formattedMessage);
     }
 
     /**
      * @return The stacktrace of the error
      */
+    @SuppressWarnings("unused")
     public Throwable getThrown() {
-        return this.thrown;
+        return super.getRecord().getThrown();
     }
 
 }
